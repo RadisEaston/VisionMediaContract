@@ -8,6 +8,13 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Tailwind CSS for advanced utilities -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            corePlugins: { preflight: false }
+        }
+    </script>
     <link
         href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
         rel="stylesheet">
@@ -1554,36 +1561,62 @@
             </div>
 
             <!-- App Mockup Section -->
-            <div class="mockup-section">
-                <div class="mockup-container">
-                    <div class="mockup-features">
-                        <h3><i class="ph ph-device-mobile"></i> تطبيق المستخدمين</h3>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-moon"></i></div> دعم الوضع الليلي كمعيار
-                            أساسي
-                        </div>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-magnifying-glass"></i></div> تصفح حسب
-                            التخصصات الطبية
-                        </div>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-user"></i></div> صفحات المحاضرين ومتابعتهم
-                        </div>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-film-strip"></i></div> مشغل فيديو متقدم
-                        </div>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-broadcast"></i></div> بث مباشر تفاعلي
-                        </div>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-file-text"></i></div> مكتبة ملفات محمية
-                        </div>
-                        <div class="mockup-feature-item">
-                            <div class="mockup-feature-icon"><i class="ph ph-credit-card"></i></div> نظام اشتراكات ودفع
-                            متكامل
+            <div class="pt-8 pb-12 w-full">
+                <div class="flex flex-col md:flex-row items-center justify-center gap-10 lg:gap-20">
+                    
+                    <!-- Text and Features -->
+                    <div class="w-full md:w-1/2 text-right">
+                        <h3 class="text-2xl md:text-3xl font-extrabold text-[#1e3a8a] mb-6 flex items-center justify-end gap-3">
+                            <i class="ph ph-device-mobile text-[28px]"></i> تطبيق المستخدمين
+                        </h3>
+                        
+                        <div class="flex flex-col gap-3">
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">دعم الوضع الليلي كمعيار أساسي</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-moon text-lg"></i></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">تصفح حسب التخصصات الطبية</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-magnifying-glass text-lg"></i></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">صفحات المحاضرين ومتابعتهم</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-user text-lg"></i></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">مشغل فيديو متقدم</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-film-strip text-lg"></i></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">بث مباشر تفاعلي</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-broadcast text-lg"></i></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">مكتبة ملفات محمية</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-file-text text-lg"></i></div>
+                            </div>
+                            
+                            <div class="flex items-center justify-end gap-4 text-sm md:text-base text-slate-600 bg-slate-50 p-3 rounded-xl border border-slate-100 shadow-sm transition-all hover:bg-white hover:shadow-md">
+                                <span class="font-semibold">نظام اشتراكات ودفع متكامل</span>
+                                <div class="bg-[#1e3a8a] text-white w-10 h-10 rounded-xl flex items-center justify-center shrink-0 shadow-md"><i class="ph ph-credit-card text-lg"></i></div>
+                            </div>
                         </div>
                     </div>
-                    <img src="assets/app_mockup.png" alt="تصميم مبدئي للتطبيق" class="mockup-image">
+
+                    <!-- Image -->
+                    <div class="w-full md:w-1/2 flex justify-center mt-6 md:mt-0 relative">
+                        <!-- Decorative background blob -->
+                        <div class="absolute inset-0 bg-gradient-to-tr from-blue-100 to-teal-50 rounded-full blur-3xl opacity-70 -z-10 scale-90"></div>
+                        
+                        <img src="assets/app_mockup.png" alt="تصميم مبدئي للتطبيق" 
+                            class="w-full max-w-[320px] md:max-w-[420px] object-contain drop-shadow-[0_20px_40px_rgba(30,58,138,0.2)] z-10 transition-transform duration-500 hover:scale-[1.03]">
+                    </div>
+
                 </div>
             </div>
 
@@ -1620,44 +1653,49 @@
             </p>
 
             <!-- Tablet + Phone Mockup with text beside it -->
-            <div class="device-mockup-wrapper" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; margin-top: 10px;">
-                <div class="device-mockup-img" style="flex: 2; min-width: 360px; margin-right: -40px;">
-                    <img src="assets/tablet%20and%20phone_mockup.png" alt="تجربة المستخدم على مختلف الأجهزة"
-                        style="width: 100%; display: block; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+            <div class="flex flex-col md:flex-row items-center gap-12 md:gap-16 mt-12 w-full">
+                
+                <!-- Large Image Section (First on RTL desktop, bottom on mobile) -->
+                <div class="w-full md:w-[60%] relative z-10 order-2 md:order-none">
+                    <!-- -mx-6 allows it to stretch wider on mobile beyond the padding -->
+                    <div class="-mx-8 sm:mx-0">
+                        <img src="assets/tablet%20and%20phone_mockup.png" alt="تجربة المستخدم على مختلف الأجهزة"
+                            class="w-full h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)] scale-[1.15] sm:scale-100 md:scale-110 origin-center transition-transform hover:scale-[1.12] duration-500">
+                    </div>
                 </div>
-                <div class="device-mockup-text" style="flex: 1; min-width: 240px; text-align: right; padding-left: 10px;">
-                    <div
-                        style="font-size: 11px; font-weight: 700; color: var(--accent-teal); letter-spacing: 3px; margin-bottom: 12px; text-transform: uppercase;">
-                        تعدد الأجهزة</div>
-                    <h3
-                        style="font-size: 28px; font-weight: 900; color: white; margin-bottom: 14px; line-height: 1.35;">
-                        تجربة متكاملة<br>على كل الأجهزة</h3>
-                    <p style="font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.9; margin-bottom: 28px;">
-                        المنصة مصممة لتعمل بسلاسة على الهاتف والتابلت، مع واجهة مخصصة لكل جهاز.</p>
-                    <div style="display: flex; flex-direction: column; gap: 14px;">
-                        <div
-                            style="display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;">
-                            <div
-                                style="width: 36px; height: 36px; border-radius: 10px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                <i class="ph ph-device-mobile" style="color:white; font-size:16px;"></i>
+
+                <!-- Text Section -->
+                <div class="w-full md:w-[40%] text-right z-20 order-1 md:order-none px-4 sm:px-0">
+                    <div class="text-[11px] font-bold text-[#0d9488] tracking-[3px] mb-3 uppercase">
+                        تعدد الأجهزة
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl font-black text-white mb-4 leading-tight">
+                        تجربة متكاملة<br>على كل الأجهزة
+                    </h3>
+                    <p class="text-[14px] text-white/60 leading-[1.9] mb-8">
+                        المنصة مصممة لتعمل بسلاسة على الهاتف والتابلت، مع واجهة مخصصة لكل جهاز لتجربة تعليمية بلا حدود.
+                    </p>
+                    
+                    <div class="flex flex-col gap-4">
+                        <div class="flex items-center justify-end gap-3 text-white/90 text-sm font-medium">
+                            <span>تطبيق يعمل على Android و iOS</span>
+                            <div class="w-10 h-10 rounded-xl bg-[#1e3a8a] flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="ph ph-device-mobile text-white text-lg"></i>
                             </div>
-                            تطبيق يعمل على Android و iOS
                         </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;">
-                            <div
-                                style="width: 36px; height: 36px; border-radius: 10px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                <i class="ph ph-shield-check" style="color:white; font-size:16px;"></i>
+                        
+                        <div class="flex items-center justify-end gap-3 text-white/90 text-sm font-medium">
+                            <span>لوحة المحاضر والإدارة مدمجة داخل التطبيق</span>
+                            <div class="w-10 h-10 rounded-xl bg-[#1e3a8a] flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="ph ph-shield-check text-white text-lg"></i>
                             </div>
-                            لوحة المحاضر والإدارة مدمجة داخل التطبيق
                         </div>
-                        <div
-                            style="display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;">
-                            <div
-                                style="width: 36px; height: 36px; border-radius: 10px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
-                                <i class="ph ph-moon" style="color:white; font-size:16px;"></i>
+                        
+                        <div class="flex items-center justify-end gap-3 text-white/90 text-sm font-medium">
+                            <span>الوضع الليلي كمعيار أساسي في التصميم</span>
+                            <div class="w-10 h-10 rounded-xl bg-[#1e3a8a] flex items-center justify-center shrink-0 shadow-lg">
+                                <i class="ph ph-moon text-white text-lg"></i>
                             </div>
-                            الوضع الليلي كمعيار أساسي في التصميم
                         </div>
                     </div>
                 </div>
