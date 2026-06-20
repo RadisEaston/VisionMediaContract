@@ -1,0 +1,2537 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عقد تطوير منصة علمية طبية - Vision Media</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&family=Tajawal:wght@300;400;500;700;800;900&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            /* Vision Media Brand Colors */
+            --brand-primary: #193CB8;
+            --brand-dark: #122a80;
+            --brand-light: #2c52db;
+
+            --accent-teal: #009689;
+            --accent-cyan: #00b3a3;
+
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-section: #f8fafc;
+            --bg-white: #ffffff;
+            --text-dark: #1e293b;
+            --text-medium: #475569;
+            --text-light: #94a3b8;
+            --border-light: #e2e8f0;
+            --border-medium: #cbd5e1;
+
+            --success: #009689;
+            --warning: #475569;
+            --danger: #193CB8;
+            --info: #193CB8;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Tajawal', sans-serif;
+            color: var(--text-dark);
+            background: var(--bg-white);
+            line-height: 1.8;
+            font-size: 15px;
+        }
+
+        /* ===== PDF / PRINT STYLES ===== */
+        @page {
+            size: A4;
+            margin: 0;
+        }
+
+        @media print {
+
+            html,
+            body {
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                color-adjust: exact !important;
+                background-color: var(--bg-white) !important;
+            }
+
+            body {
+                font-size: 11pt;
+            }
+
+            /* Remove browser headers/footers space */
+            @page {
+                margin: 0;
+            }
+
+            /* Page breaks */
+            .page-break {
+                page-break-before: always;
+                break-before: page;
+            }
+
+            .no-print {
+                display: none !important;
+            }
+
+            /* Cover page: full bleed */
+            .cover-page {
+                min-height: 100vh;
+                width: 100% !important;
+                max-width: none !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background: var(--brand-primary) !important;
+                position: relative;
+                z-index: 10;
+                margin: 0 !important;
+                padding: 60px 40px;
+                box-sizing: border-box;
+            }
+
+            /* Container gets padding since page margin is 0 */
+            .container {
+                padding: 0 40px;
+                max-width: 100% !important;
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            /* Sections get their own padding */
+            .section,
+            section {
+                padding: 25px 0;
+                width: 100% !important;
+                box-sizing: border-box;
+            }
+
+            /* TOC full width and scaled down */
+            .toc {
+                padding: 25px 0;
+                width: 100% !important;
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+            
+            .toc-grid {
+                gap: 8px !important;
+                margin-top: 20px !important;
+            }
+            
+            .toc-item {
+                padding: 10px 14px !important;
+            }
+
+            /* Dark sections full bleed */
+            .concepts-showcase {
+                width: 100% !important;
+                max-width: none !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background: var(--bg-dark) !important;
+                padding: 40px 0;
+                box-sizing: border-box;
+            }
+
+            /* Footer full bleed */
+            .contract-footer {
+                width: 100% !important;
+                max-width: none !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+                background: var(--bg-dark) !important;
+                box-sizing: border-box;
+            }
+
+            /* Prevent breaking inside important elements */
+            .toc-item,
+            .content-block,
+            .arch-diagram,
+            .pricing-card,
+            .flow-diagram,
+            .stats-bar,
+            .note-box,
+            .signature-box,
+            .info-card,
+            .feature-card,
+            .component-card,
+            .styled-table,
+            .timeline,
+            .timeline-item,
+            .section-header,
+            .mockup-section,
+            .mockup-container {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            /* Keep section headers with their content */
+            .section-header {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+                margin-bottom: 20px !important;
+            }
+
+            h3,
+            h4 {
+                page-break-after: avoid !important;
+                break-after: avoid !important;
+            }
+
+            /* Keep signature boxes together */
+            .signature-grid {
+                page-break-inside: avoid !important;
+                break-inside: avoid !important;
+            }
+
+            .mockup-image {
+                max-width: 300px;
+            }
+
+            .concept-screens img {
+                max-width: 160px;
+            }
+
+            .no-screen {
+                display: block !important;
+            }
+
+            .fixed-logo {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                width: 100px;
+                z-index: 1;
+            }
+
+            .cover-fixed-logo {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 100px;
+                filter: brightness(0) invert(1);
+            }
+        }
+
+        .no-screen {
+            display: none !important;
+        }
+
+        /* ===== COVER PAGE ===== */
+        .cover-page {
+            min-height: 100vh;
+            background: var(--brand-primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            padding: 40px;
+        }
+
+        .cover-page::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -30%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(0, 201, 167, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cover-page::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -20%;
+            width: 60%;
+            height: 150%;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cover-logo {
+            width: 180px;
+            height: auto;
+            margin-bottom: 40px;
+            animation: fadeInDown 1s ease;
+            filter: brightness(0) invert(1);
+        }
+
+        /* ===== APP CONCEPTS SHOWCASE ===== */
+        .concepts-showcase {
+            padding: 50px 0;
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .concepts-showcase .section-header {
+            border-bottom-color: var(--accent-teal);
+        }
+
+        .concepts-showcase .section-title {
+            color: white;
+        }
+
+        .concepts-showcase .section-num {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .concept-screens {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .concept-screen {
+            text-align: center;
+            max-width: 240px;
+        }
+
+        .concept-screen img {
+            width: 100%;
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.08);
+            margin-bottom: 14px;
+        }
+
+        .concept-screen h4 {
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 4px;
+        }
+
+        .concept-screen p {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .concept-note {
+            text-align: center;
+            margin-top: 24px;
+            padding: 14px 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cover-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            animation: fadeInUp 1s ease 0.2s both;
+        }
+
+        .cover-subtitle {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s both;
+        }
+
+        .cover-tagline {
+            font-size: 16px;
+            opacity: 0.7;
+            max-width: 600px;
+            line-height: 1.6;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .cover-divider {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-teal);
+            margin: 30px auto;
+            border-radius: 2px;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .cover-meta {
+            margin-top: 50px;
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.8s both;
+        }
+
+        .cover-meta-item {
+            text-align: center;
+        }
+
+        .cover-meta-label {
+            font-size: 12px;
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .cover-meta-value {
+            font-size: 16px;
+            font-weight: 700;
+            margin-top: 4px;
+        }
+
+        .cover-badge {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* ===== MAIN CONTAINER ===== */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 30px;
+        }
+
+        /* ===== TABLE OF CONTENTS ===== */
+        .toc {
+            padding: 60px 0;
+            background: var(--bg-section);
+        }
+
+        .toc-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .toc-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 18px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid var(--border-light);
+            text-decoration: none;
+            color: var(--text-dark);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .toc-item:hover {
+            border-color: var(--brand-primary);
+            box-shadow: 0 4px 12px rgba(26, 26, 142, 0.1);
+            transform: translateY(-1px);
+        }
+
+        .toc-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: var(--brand-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .toc-text {
+            font-size: 13.5px;
+            font-weight: 600;
+        }
+
+        /* ===== SECTIONS ===== */
+        .section {
+            padding: 50px 0;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-section);
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 30px;
+            padding-bottom: 16px;
+            border-bottom: 3px solid var(--brand-primary);
+        }
+
+        .section-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            background: var(--brand-primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--brand-dark);
+        }
+
+        .section-num {
+            font-size: 14px;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        /* ===== CONTENT BLOCKS ===== */
+        .content-block {
+            margin-bottom: 30px;
+        }
+
+        .content-block h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--brand-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .content-block p {
+            color: var(--text-medium);
+            line-height: 1.9;
+            margin-bottom: 12px;
+        }
+
+        .content-block ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .content-block ul li {
+            padding: 8px 0;
+            padding-right: 28px;
+            position: relative;
+            color: var(--text-medium);
+        }
+
+        .content-block ul li::before {
+            content: '✦';
+            position: absolute;
+            right: 0;
+            color: var(--accent-teal);
+            font-size: 12px;
+        }
+
+        /* ===== INFO CARDS ===== */
+        .info-card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+        }
+
+        .info-card.highlight {
+            border-right: 4px solid var(--brand-primary);
+        }
+
+        .info-card.teal {
+            border-right: 4px solid var(--accent-teal);
+        }
+
+        .info-card.warning {
+            border-right: 4px solid var(--warning);
+            background: #fffbeb;
+        }
+
+        .info-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-card-body {
+            color: var(--text-medium);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        /* ===== TABLES ===== */
+        .styled-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .styled-table thead {
+            background: var(--brand-primary);
+        }
+
+        .styled-table thead th {
+            padding: 14px 18px;
+            color: white;
+            font-weight: 700;
+            font-size: 14px;
+            text-align: right;
+        }
+
+        .styled-table tbody td {
+            padding: 13px 18px;
+            border-bottom: 1px solid var(--border-light);
+            font-size: 14px;
+            color: var(--text-medium);
+        }
+
+        .styled-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .styled-table tbody tr:nth-child(even) {
+            background: #f8fafc;
+        }
+
+        .styled-table tbody tr:hover {
+            background: #f0f4ff;
+        }
+
+        .styled-table .highlight-row {
+            background: #f0fdf4 !important;
+            font-weight: 700;
+        }
+
+        /* ===== COMPONENT GRID ===== */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .component-card {
+            background: white;
+            border-radius: 14px;
+            padding: 24px;
+            border: 1px solid var(--border-light);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        .component-icon {
+            background: var(--brand-primary);
+            color: white;
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            margin: 0 auto 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+
+
+
+
+
+        .component-card h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 6px;
+        }
+
+        .component-card p {
+            font-size: 12.5px;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* ===== TECH STACK ===== */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .tech-badge {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .tech-badge.primary {
+            background: #eef2ff;
+            color: var(--brand-primary);
+            border: 1px solid #c7d2fe;
+        }
+
+        .tech-badge.teal {
+            background: #f0fdfa;
+            color: #0d9488;
+            border: 1px solid #99f6e4;
+        }
+
+        .tech-badge.amber {
+            background: #fffbeb;
+            color: #d97706;
+            border: 1px solid #fde68a;
+        }
+
+        /* ===== FEATURE TIER CARDS ===== */
+        .tier-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            color: white;
+            font-weight: 700;
+            font-size: 17px;
+        }
+
+        .tier-header.red {
+            background: var(--brand-primary);
+        }
+
+        .tier-header.yellow {
+            background: var(--brand-dark);
+        }
+
+        .tier-header.green {
+            background: var(--accent-teal);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid var(--border-light);
+            margin-bottom: 14px;
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            gap: 16px;
+            align-items: start;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .feature-num {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            flex-shrink: 0;
+        }
+
+        .feature-num.red {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .feature-num.yellow {
+            background: var(--brand-dark);
+            color: white;
+        }
+
+        .feature-num.green {
+            background: var(--accent-teal);
+            color: white;
+        }
+
+        .feature-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 4px;
+        }
+
+        .feature-content p {
+            font-size: 13px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        .feature-badge {
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .feature-badge.high {
+            background: rgba(25, 60, 184, 0.1);
+            color: var(--brand-primary);
+        }
+
+        .feature-badge.medium {
+            background: rgba(0, 150, 137, 0.1);
+            color: var(--accent-teal);
+        }
+
+        .feature-badge.low {
+            background: #f1f5f9;
+            color: var(--text-medium);
+        }
+
+        /* ===== TIMELINE ===== */
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            right: 24px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--brand-primary), var(--accent-teal));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .timeline-dot {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid var(--brand-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+            color: var(--brand-primary);
+            flex-shrink: 0;
+            z-index: 1;
+        }
+
+        .timeline-content {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid var(--border-light);
+            flex-grow: 1;
+        }
+
+        .timeline-content h4 {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 4px;
+        }
+
+        .timeline-content .duration {
+            font-size: 13px;
+            color: var(--accent-teal);
+            font-weight: 600;
+        }
+
+        .timeline-content p {
+            font-size: 13px;
+            color: var(--text-light);
+            margin-top: 6px;
+        }
+
+        /* ===== MILESTONE TABLE ===== */
+        .milestone-progress {
+            display: flex;
+            height: 12px;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px 0;
+            background: #e2e8f0;
+        }
+
+        .milestone-bar {
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+
+        .milestone-bar:nth-child(1) {
+            background: #3b82f6;
+        }
+
+        .milestone-bar:nth-child(2) {
+            background: #8b5cf6;
+        }
+
+        .milestone-bar:nth-child(3) {
+            background: #f59e0b;
+        }
+
+        .milestone-bar:nth-child(4) {
+            background: #10b981;
+        }
+
+        .milestone-bar:nth-child(5) {
+            background: #ef4444;
+        }
+
+        /* ===== APP MOCKUP ===== */
+        .mockup-section {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .mockup-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .mockup-image {
+            width: 450px;
+            filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.15));
+        }
+
+        .mockup-features {
+            text-align: right;
+            max-width: 380px;
+        }
+
+        .mockup-features h3 {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--brand-dark);
+            margin-bottom: 16px;
+        }
+
+        .mockup-feature-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: var(--text-medium);
+        }
+
+        .mockup-feature-icon {
+            background: var(--brand-primary);
+            color: white;
+            width: 28px;
+            height: 28px;
+            border-radius: 7px;
+            background: var(--brand-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+
+        /* ===== SIGNATURE SECTION ===== */
+        .signature-section {
+            padding: 50px 0;
+        }
+
+        .signature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .signature-box {
+            background: white;
+            border-radius: 14px;
+            padding: 30px;
+            border: 2px solid var(--border-medium);
+            text-align: center;
+        }
+
+        .signature-box h4 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--brand-dark);
+            margin-bottom: 20px;
+        }
+
+        .signature-line {
+            width: 100%;
+            border-bottom: 1px dashed var(--border-medium);
+            padding-top: 40px;
+            margin-bottom: 10px;
+        }
+
+        .signature-label {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-bottom: 6px;
+        }
+
+        /* ===== FOOTER ===== */
+        .contract-footer {
+            background: var(--bg-dark);
+            color: white;
+            text-align: center;
+            padding: 40px;
+        }
+
+        .contract-footer img {
+            width: 80px;
+            margin-bottom: 16px;
+            filter: brightness(0) invert(1);
+        }
+
+        .contract-footer p {
+            font-size: 13px;
+            opacity: 0.6;
+            margin-bottom: 4px;
+        }
+
+        .footer-badge {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 12px;
+            opacity: 0.5;
+        }
+
+        /* ===== FLOW DIAGRAM ===== */
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .flow-step {
+            background: white;
+            border: 2px solid var(--brand-primary);
+            border-radius: 10px;
+            padding: 10px 18px;
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--brand-primary);
+            text-align: center;
+        }
+
+        .flow-arrow {
+            font-size: 20px;
+            color: var(--accent-teal);
+            font-weight: 700;
+        }
+
+        /* ===== STATS BAR ===== */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin: 24px 0;
+        }
+
+        .stat-item {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid var(--border-light);
+        }
+
+        .stat-value {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--brand-primary), var(--accent-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--text-light);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        /* ===== NOTE BOX ===== */
+        .note-box {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 10px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            font-size: 13.5px;
+            color: #0369a1;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .note-box.warn {
+            background: #fffbeb;
+            border-color: #fde68a;
+            color: #92400e;
+        }
+
+        .note-box.success {
+            background: #f0fdf4;
+            border-color: #bbf7d0;
+            color: #166534;
+        }
+
+        .note-icon {
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+        /* ===== PRICING MODELS ===== */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pricing-icon {
+            background: var(--accent-teal);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            flex-shrink: 0;
+        }
+
+
+
+
+
+
+        .pricing-card h5 {
+            font-size: 13px;
+            font-weight: 700;
+            color: var(--brand-dark);
+        }
+
+        .pricing-card p {
+            font-size: 12px;
+            color: var(--text-light);
+            margin-top: 2px;
+        }
+
+        /* ===== ARCHITECTURE DIAGRAM ===== */
+        .arch-diagram {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid var(--border-light);
+            margin: 24px 0;
+        }
+
+        .arch-row {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            flex-wrap: wrap;
+        }
+
+        .arch-box {
+            padding: 12px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            text-align: center;
+            min-width: 140px;
+        }
+
+        .arch-box.user {
+            background: #dbeafe;
+            color: #1e40af;
+            border: 2px solid #93c5fd;
+        }
+
+        .arch-box.api {
+            background: var(--brand-primary);
+            color: white;
+        }
+
+        .arch-box.service {
+            background: #f0fdfa;
+            color: #0d9488;
+            border: 2px solid #99f6e4;
+        }
+
+        .arch-box.db {
+            background: #fef3c7;
+            color: #92400e;
+            border: 2px solid #fde68a;
+        }
+
+        .arch-connector {
+            text-align: center;
+            font-size: 24px;
+            color: var(--border-medium);
+            margin: 4px 0;
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .cover-title {
+                font-size: 28px;
+            }
+
+            .cover-subtitle {
+                font-size: 20px;
+            }
+
+            .toc-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .signature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-bar {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mockup-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <img src="assets/vision_media_logo.png" class="fixed-logo no-screen" alt="Vision Media">
+
+    <!-- ══════════════════════════ COVER PAGE ══════════════════════════ -->
+    <div class="cover-page">
+        <img src="assets/vision_media_logo.png" class="cover-fixed-logo no-screen" alt="Vision Media">
+        <div class="cover-badge"><i class="ph ph-lock-key"></i> مستند سري</div>
+        <img src="assets/vision_media_logo.png" alt="Vision Media Logo" class="cover-logo">
+        <div class="cover-title">عقد تطوير مشروع</div>
+        <div class="cover-subtitle">منصة علمية طبية متكاملة</div>
+        <div class="cover-divider"></div>
+        <div class="cover-tagline">
+            تطبيق Android + iOS + لوحات تحكم ويب<br>
+            عرض فني ومالي شامل لبناء منصة كورسات طبية احترافية
+        </div>
+        <div class="cover-meta">
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">مقدم من</div>
+                <div class="cover-meta-value">Vision Media</div>
+            </div>
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">التاريخ</div>
+                <div class="cover-meta-value">19 يونيو 2026</div>
+            </div>
+            <div class="cover-meta-item">
+                <div class="cover-meta-label">رقم العرض</div>
+                <div class="cover-meta-value">VM-MED-2026-001</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════ TABLE OF CONTENTS ══════════════════════════ -->
+    <div class="toc">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-list-dashes"></i></div>
+                <div>
+                    <div class="section-title">جدول المحتويات</div>
+                </div>
+            </div>
+            <div class="toc-grid">
+                <a href="#s1" class="toc-item">
+                    <div class="toc-num">1</div>
+                    <div class="toc-text">مقدمة المشروع ورؤيته</div>
+                </a>
+                <a href="#s2" class="toc-item">
+                    <div class="toc-num">2</div>
+                    <div class="toc-text">نطاق العمل ومكونات النظام</div>
+                </a>
+                <a href="#concepts" class="toc-item">
+                    <div class="toc-num"><i class="ph ph-palette"></i></div>
+                    <div class="toc-text">أفكار تصميم التطبيق</div>
+                </a>
+                <a href="#s3" class="toc-item">
+                    <div class="toc-num">3</div>
+                    <div class="toc-text">البنية التقنية المعتمدة</div>
+                </a>
+                <a href="#s4" class="toc-item">
+                    <div class="toc-num">4</div>
+                    <div class="toc-text">الميزات الأساسية المشمولة</div>
+                </a>
+                <a href="#s5" class="toc-item">
+                    <div class="toc-num">5</div>
+                    <div class="toc-text">الميزات الإضافية الاختيارية</div>
+                </a>
+                <a href="#s6" class="toc-item">
+                    <div class="toc-num">6</div>
+                    <div class="toc-text">أنظمة الدفع والاشتراكات</div>
+                </a>
+                <a href="#s7" class="toc-item">
+                    <div class="toc-num">7</div>
+                    <div class="toc-text">التكاليف التشغيلية الشهرية</div>
+                </a>
+                <a href="#s8" class="toc-item">
+                    <div class="toc-num">8</div>
+                    <div class="toc-text">العرض المالي وخطة الدفع</div>
+                </a>
+                <a href="#s9" class="toc-item">
+                    <div class="toc-num">9</div>
+                    <div class="toc-text">الجدول الزمني المتوقع</div>
+                </a>
+                <a href="#s10" class="toc-item">
+                    <div class="toc-num">10</div>
+                    <div class="toc-text">اتفاقية الصيانة والدعم</div>
+                </a>
+                <a href="#s11" class="toc-item">
+                    <div class="toc-num">11</div>
+                    <div class="toc-text">الشروط والأحكام العامة</div>
+                </a>
+                <a href="#s12" class="toc-item">
+                    <div class="toc-num">12</div>
+                    <div class="toc-text">التوقيعات والاعتماد</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════ 1. INTRODUCTION ══════════════════════════ -->
+    <section class="section" id="s1">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-push-pin"></i></div>
+                <div>
+                    <div class="section-num">القسم الأول</div>
+                    <div class="section-title">مقدمة المشروع ورؤيته</div>
+                </div>
+            </div>
+
+            <div class="content-block">
+                <p>يهدف هذا المشروع إلى تصميم وتطوير <strong>منصة علمية طبية إلكترونية متكاملة</strong> متخصصة في
+                    المحتوى الطبي والتدريب المهني، تستهدف <strong>الأطباء، المحاضرين، طلاب الطب، والمتخصصين في القطاع
+                        الصحي</strong> في ليبيا والمنطقة العربية.</p>
+                <p>المنصة مصممة كبيئة كورسات احترافية (على غرار Udemy) وليست نظام إدارة تعلم جامعي، بحيث يمكن لأي طبيب
+                    أو محاضر أو طالب البحث عن المحتوى الذي يهمه حسب تخصصه الطبي.</p>
+            </div>
+
+            <h3 style="font-size: 17px; font-weight: 700; color: var(--brand-primary); margin-bottom: 14px;">🎯 الجمهور
+                المستهدف</h3>
+            <div class="component-grid">
+                <div class="component-card">
+                    <div class="component-icon"><i class="ph ph-stethoscope"></i></div>
+                    <h4>الأطباء والمتخصصون</h4>
+                    <p>تطوير مهني مستمر، تعلم تقنيات وإجراءات طبية جديدة</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon"><i class="ph ph-chalkboard-teacher"></i></div>
+                    <h4>المحاضرون والدكاترة</h4>
+                    <p>نشر محتوى تعليمي وتحقيق دخل</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon"><i class="ph ph-graduation-cap"></i></div>
+                    <h4>طلاب الطب</h4>
+                    <p>مراجعة المواد ودراسة التخصصات المختلفة</p>
+                </div>
+                <div class="component-card">
+                    <div class="component-icon"><i class="ph ph-hospital"></i></div>
+                    <h4>العاملون في القطاع الصحي</h4>
+                    <p>تطوير المهارات والاطلاع على المستجدات</p>
+                </div>
+            </div>
+
+            <h3 style="font-size: 17px; font-weight: 700; color: var(--brand-primary); margin-bottom: 14px;"><i
+                    class="ph ph-magnifying-glass"></i> المشكلة التي نحلها</h3>
+            <div class="content-block">
+                <ul>
+                    <li>غياب منصة محلية متخصصة وآمنة للمحتوى الطبي</li>
+                    <li>صعوبة حماية المحتوى من القرصنة والنسخ</li>
+                    <li>عدم وجود منصة كورسات طبية عربية تدعم التطور المهني للأطباء</li>
+                    <li>تذبذب جودة الإنترنت وصعوبة المشاهدة المستمرة</li>
+                    <li>عدم توفر وسائل دفع إلكترونية محلية في المنصات العالمية</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 2. SCOPE ══════════════════════════ -->
+    <section class="section" id="s2">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-hard-hat"></i></div>
+                <div>
+                    <div class="section-num">القسم الثاني</div>
+                    <div class="section-title">نطاق العمل ومكونات النظام</div>
+                </div>
+            </div>
+
+            <p style="color: var(--text-medium); margin-bottom: 24px;">يتكون النظام من أربعة مكونات رئيسية تعمل بتكامل
+                لتوفير تجربة شاملة:</p>
+
+            <!-- Architecture Diagram -->
+            <div class="arch-diagram">
+                <h4 style="text-align: center; margin-bottom: 16px; color: var(--text-light); font-size: 13px;">مخطط
+                    البنية العامة للنظام</h4>
+                <div class="arch-row">
+                    <div class="arch-box user"><i class="ph ph-device-mobile"></i> تطبيق الهاتف<br><small>iOS +
+                            Android</small></div>
+                    <div class="arch-box user"><i class="ph ph-desktop"></i> لوحة المحاضرين<br><small>Web Panel</small>
+                    </div>
+                    <div class="arch-box user"><i class="ph ph-shield-check"></i> لوحة الإدارة<br><small>Admin
+                            Panel</small></div>
+                </div>
+                <div class="arch-connector"><i class="ph ph-arrow-down" style="font-size:24px;"></i></div>
+                <div class="arch-row">
+                    <div class="arch-box api"><i class="ph ph-lightning"></i> واجهات برمجية (APIs)<br><small>ASP.NET
+                            Core</small></div>
+                </div>
+                <div class="arch-connector"><i class="ph ph-arrow-down" style="font-size:24px;"></i></div>
+                <div class="arch-row">
+                    <div class="arch-box service"><i class="ph ph-broadcast"></i> بث مباشر<br><small>Agora/IVS</small>
+                    </div>
+                    <div class="arch-box db"><i class="ph ph-database"></i> قاعدة بيانات<br><small>SQL Server</small>
+                    </div>
+                    <div class="arch-box service"><i class="ph ph-film-strip"></i> تخزين فيديو<br><small>AWS S3 +
+                            DRM</small></div>
+                    <div class="arch-box service"><i class="ph ph-credit-card"></i> MOAMALAT<br><small>المدفوعات</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- App Mockup Section -->
+            <div class="mockup-section">
+                <div class="mockup-container">
+                    <div class="mockup-features">
+                        <h3><i class="ph ph-device-mobile"></i> تطبيق المستخدمين</h3>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-moon"></i></div> دعم الوضع الليلي كمعيار
+                            أساسي
+                        </div>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-magnifying-glass"></i></div> تصفح حسب
+                            التخصصات الطبية
+                        </div>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-user"></i></div> صفحات المحاضرين ومتابعتهم
+                        </div>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-film-strip"></i></div> مشغل فيديو متقدم
+                        </div>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-broadcast"></i></div> بث مباشر تفاعلي
+                        </div>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-file-text"></i></div> مكتبة ملفات محمية
+                        </div>
+                        <div class="mockup-feature-item">
+                            <div class="mockup-feature-icon"><i class="ph ph-credit-card"></i></div> نظام اشتراكات ودفع
+                            متكامل
+                        </div>
+                    </div>
+                    <img src="assets/app_mockup.png" alt="تصميم مبدئي للتطبيق" class="mockup-image">
+                </div>
+            </div>
+
+            <!-- Component Cards -->
+            <div class="component-grid" style="margin-top: 20px;">
+                <div class="info-card highlight">
+                    <div class="info-card-title"><i class="ph ph-desktop"></i> لوحة تحكم المحاضرين</div>
+                    <div class="info-card-body">واجهة مخصصة لرفع الفيديوهات، إدارة البث المباشر، لوحة إحصائيات شاملة،
+                        وإدارة الكورسات والفصول والمرفقات.</div>
+                </div>
+                <div class="info-card highlight">
+                    <div class="info-card-title"><i class="ph ph-shield-check"></i> لوحة تحكم الإدارة</div>
+                    <div class="info-card-body">إدارة المستخدمين وصلاحياتهم، مراجعة واعتماد المحتوى، إدارة الشؤون
+                        المالية، توليد أكواد التفعيل، وتقارير شاملة.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ APP CONCEPTS SHOWCASE — TABLET ══════════════════════════ -->
+    <section class="concepts-showcase page-break" id="concepts">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-palette"></i></div>
+                <div>
+                    <div class="section-num">رؤية مبدئية</div>
+                    <div class="section-title">أفكار تصميم التطبيق</div>
+                </div>
+            </div>
+
+            <p style="color: rgba(255,255,255,0.6); margin-bottom: 40px; font-size: 14px;">
+                فيما يلي تصورات مبدئية لبعض شاشات التطبيق الرئيسية، مُصممة وفق نظام التصميم الخاص بـ Vision Media مع دعم
+                الوضع الليلي كمعيار أساسي. التصميم النهائي يُعتمد في مرحلة UI/UX بالتنسيق مع العميل.
+            </p>
+
+            <!-- Tablet + Phone Mockup with text beside it -->
+            <div style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; margin-top: 10px;">
+                <div style="flex: 2; min-width: 360px; margin-right: -40px;">
+                    <img src="assets/tablet%20and%20phone_mockup.png" alt="تجربة المستخدم على مختلف الأجهزة"
+                        style="width: 100%; display: block; filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));">
+                </div>
+                <div style="flex: 1; min-width: 240px; text-align: right; padding-left: 10px;">
+                    <div
+                        style="font-size: 11px; font-weight: 700; color: var(--accent-teal); letter-spacing: 3px; margin-bottom: 12px; text-transform: uppercase;">
+                        تعدد الأجهزة</div>
+                    <h3
+                        style="font-size: 28px; font-weight: 900; color: white; margin-bottom: 14px; line-height: 1.35;">
+                        تجربة متكاملة<br>على كل الأجهزة</h3>
+                    <p style="font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.9; margin-bottom: 28px;">
+                        المنصة مصممة لتعمل بسلاسة على الهاتف والتابلت، مع واجهة مخصصة لكل جهاز.</p>
+                    <div style="display: flex; flex-direction: column; gap: 14px;">
+                        <div
+                            style="display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;">
+                            <div
+                                style="width: 36px; height: 36px; border-radius: 10px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="ph ph-device-mobile" style="color:white; font-size:16px;"></i></div>
+                            تطبيق يعمل على Android و iOS
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;">
+                            <div
+                                style="width: 36px; height: 36px; border-radius: 10px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="ph ph-shield-check" style="color:white; font-size:16px;"></i></div>
+                            لوحة المحاضر والإدارة مدمجة داخل التطبيق
+                        </div>
+                        <div
+                            style="display: flex; align-items: center; gap: 14px; color: rgba(255,255,255,0.85); font-size: 14px; font-weight: 500;">
+                            <div
+                                style="width: 36px; height: 36px; border-radius: 10px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <i class="ph ph-moon" style="color:white; font-size:16px;"></i></div>
+                            الوضع الليلي كمعيار أساسي في التصميم
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ APP SCREENS — WHITE SECTION ══════════════════════════ -->
+    <section style="background: #f8fafc; padding: 60px 0;">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div
+                    style="font-size: 12px; font-weight: 700; color: var(--brand-primary); letter-spacing: 2px; margin-bottom: 10px;">
+                    شاشات التطبيق</div>
+                <h3 style="font-size: 24px; font-weight: 800; color: var(--brand-dark); margin-bottom: 8px;">أبرز
+                    الشاشات الرئيسية</h3>
+                <p style="font-size: 14px; color: var(--text-medium);">تصميم عصري بالوضع الليلي مع تجربة مستخدم سلسة
+                    وبديهية</p>
+            </div>
+
+            <div style="text-align: center; margin-bottom: 48px;">
+                <img src="assets/DesginMarkup.png" alt="شاشات التطبيق الثلاث"
+                    style="width: 100%; max-width: 840px; filter: drop-shadow(0 16px 32px rgba(25,60,184,0.12));">
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                <div
+                    style="background: white; border: 1px solid var(--border-light); border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                    <div
+                        style="width: 44px; height: 44px; border-radius: 12px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
+                        <i class="ph ph-broadcast" style="color:white; font-size:20px;"></i></div>
+                    <h4 style="font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 8px;">البث
+                        المباشر</h4>
+                    <p style="font-size: 13px; color: var(--text-medium); line-height: 1.6;">تفاعل مباشر مع المحاضر،
+                        محادثة حية، وأسئلة فورية</p>
+                </div>
+                <div
+                    style="background: white; border: 1px solid var(--border-light); border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                    <div
+                        style="width: 44px; height: 44px; border-radius: 12px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
+                        <i class="ph ph-books" style="color:white; font-size:20px;"></i></div>
+                    <h4 style="font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 8px;">كورساتي
+                    </h4>
+                    <p style="font-size: 13px; color: var(--text-medium); line-height: 1.6;">متابعة الكورسات المسجّلة
+                        وشريط التقدم لكل دورة تعليمية</p>
+                </div>
+                <div
+                    style="background: white; border: 1px solid var(--border-light); border-radius: 16px; padding: 24px; text-align: center; box-shadow: 0 2px 12px rgba(0,0,0,0.04);">
+                    <div
+                        style="width: 44px; height: 44px; border-radius: 12px; background: var(--brand-primary); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;">
+                        <i class="ph ph-user" style="color:white; font-size:20px;"></i></div>
+                    <h4 style="font-size: 15px; font-weight: 700; color: var(--brand-dark); margin-bottom: 8px;">صفحة
+                        الحساب</h4>
+                    <p style="font-size: 13px; color: var(--text-medium); line-height: 1.6;">ملف المستخدم، الرصيد، نقاط
+                        المكافآت، وإدارة الاشتراكات</p>
+                </div>
+            </div>
+
+            <div
+                style="text-align: center; margin-top: 32px; padding: 16px 28px; background: #eef2ff; border: 1px solid #c7d2fe; border-radius: 12px; font-size: 13px; color: var(--brand-primary); display: inline-block; margin-right: auto; margin-left: auto; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                <i class="ph ph-lightbulb"></i> هذه تصورات مبدئية لتوضيح الرؤية العامة — التصميم النهائي يُحدد بالتنسيق
+                مع العميل في مرحلة تصميم الواجهات (UI/UX)
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 3. TECH STACK ══════════════════════════ -->
+    <section class="section" id="s3">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-desktop"></i></div>
+                <div>
+                    <div class="section-num">القسم الثالث</div>
+                    <div class="section-title">البنية التقنية المعتمدة</div>
+                </div>
+            </div>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>الطبقة</th>
+                        <th>التقنية</th>
+                        <th>السبب</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>تطبيق الهاتف</strong></td>
+                        <td>.NET 9 MAUI</td>
+                        <td>تطبيق أصلي يعمل على Android و iOS</td>
+                    </tr>
+                    <tr>
+                        <td><strong>لوحة المحاضر والإدارة</strong></td>
+                        <td>مدمجة داخل التطبيق</td>
+                        <td>كل شيء في تطبيق واحد دون صفحات ويب خارجية</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الخوادم</strong></td>
+                        <td>ASP.NET Core (.NET 9)</td>
+                        <td>أداء عالي، أمان متقدم، قابلية توسع</td>
+                    </tr>
+                    <tr>
+                        <td><strong>قاعدة البيانات</strong></td>
+                        <td>SQL Server / PostgreSQL</td>
+                        <td>موثوقية واستقرار لبيانات حساسة</td>
+                    </tr>
+                    <tr>
+                        <td><strong>البث المباشر</strong></td>
+                        <td>Agora / Amazon IVS</td>
+                        <td>تحمّل آلاف المشاهدين المتزامنين</td>
+                    </tr>
+                    <tr>
+                        <td><strong>تخزين الفيديو</strong></td>
+                        <td>AWS S3 + CloudFront / Vimeo OTT</td>
+                        <td>تخزين سحابي آمن مع تشفير DRM</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الاستضافة</strong></td>
+                        <td>العنكبوت الليبي (Cloud VPS)</td>
+                        <td>سرعة استجابة محلية ودعم بالدينار</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 4. CORE FEATURES ══════════════════════════ -->
+    <section class="section" id="s4">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-check-circle"></i></div>
+                <div>
+                    <div class="section-num">القسم الرابع</div>
+                    <div class="section-title">الميزات الأساسية المشمولة بالعقد</div>
+                </div>
+            </div>
+
+            <div class="note-box success">
+                <span class="note-icon"><i class="ph ph-check-circle"></i></span>
+                <span>هذه الميزات مشمولة ضمن التكلفة الأساسية للمشروع — 16 ميزة أساسية + الوضع الليلي كمعيار تصميم
+                    إلزامي.</span>
+            </div>
+
+            <!-- Content Structure Diagram -->
+            <div class="content-block">
+                <h3>📂 هيكل تصنيف المحتوى</h3>
+                <p>يتصفح المستخدم حسب تخصصه الطبي ويجد كتالوج منظم بالكورسات المتاحة:</p>
+            </div>
+            <div class="flow-diagram">
+                <div class="flow-step"><i class="ph ph-hospital"></i> التخصص الطبي<br><small>جراحة، باطنة،
+                        أسنان...</small></div>
+                <div class="flow-arrow">←</div>
+                <div class="flow-step"><i class="ph ph-books"></i> الكورس</div>
+                <div class="flow-arrow">←</div>
+                <div class="flow-step">📖 الفصل</div>
+                <div class="flow-arrow">←</div>
+                <div class="flow-step"><i class="ph ph-film-strip"></i> المحاضرة</div>
+            </div>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>الميزة</th>
+                        <th>الوصف</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>التصنيف حسب التخصص</strong></td>
+                        <td>تنظيم المحتوى بكتالوج احترافي حسب التخصصات الطبية</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>صفحات المحاضرين</strong></td>
+                        <td>ملف شخصي لكل دكتور/محاضر مع إمكانية المتابعة</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>مشغل فيديو متقدم</strong></td>
+                        <td>استكمال المشاهدة، تغيير الجودة (480p–1080p)، التحكم بالسرعة</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>تتبع التقدم</strong></td>
+                        <td>شريط تقدم مع حفظ تلقائي لآخر نقطة توقف</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>المرفقات الأكاديمية</strong></td>
+                        <td>ربط كل فيديو بملحقاته (PDFs، مذكرات، مراجع)</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>البث المباشر التفاعلي</strong></td>
+                        <td>غرف بث حي مع دردشة فورية وإشعارات</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><strong>رفع الفيديوهات</strong></td>
+                        <td>واجهة سهلة لرفع وتنظيم محتوى الكورسات</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><strong>إدارة البث المباشر</strong></td>
+                        <td>بدء وإيقاف البث بسهولة من المتصفح</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><strong>لوحة الإحصائيات</strong></td>
+                        <td>متابعة المشتركين والتفاعل والأرباح</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><strong>إدارة المستخدمين</strong></td>
+                        <td>إضافة/تعديل/حذف حسابات (أطباء، طلاب، محاضرين)</td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td><strong>اعتماد المحتوى</strong></td>
+                        <td>مراجعة المحاضرات قبل نشرها</td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td><strong>إدارة الاشتراكات</strong></td>
+                        <td>تفعيل/إلغاء اشتراكات، توليد أكواد، متابعة المدفوعات</td>
+                    </tr>
+                    <tr>
+                        <td>13</td>
+                        <td><strong>بوابات الدفع الدولية</strong></td>
+                        <td>PayPal، Visa، Mastercard</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td><strong>المدفوعات المحلية (MOAMALAT)</strong></td>
+                        <td>بوابة موحدة لجميع وسائل الدفع الليبية</td>
+                    </tr>
+                    <tr>
+                        <td>15</td>
+                        <td><strong>أكواد التفعيل</strong></td>
+                        <td>توليد أكواد شحن مشفرة (كروت مدفوعة مسبقاً)</td>
+                    </tr>
+                    <tr>
+                        <td>16</td>
+                        <td><strong>التسعير المرن</strong></td>
+                        <td>حسب الكورس / اشتراك عند محاضر / باقات خاصة / وصول دائم</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 5. OPTIONAL FEATURES ══════════════════════════ -->
+    <section class="section page-break" id="s5">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-star"></i></div>
+                <div>
+                    <div class="section-num">القسم الخامس</div>
+                    <div class="section-title">الميزات الإضافية الاختيارية</div>
+                </div>
+            </div>
+
+            <div class="note-box warn">
+                <span class="note-icon"><i class="ph ph-warning"></i></span>
+                <span><strong>ملاحظة مهمة:</strong> الميزات التالية ليست مشمولة في السعر الأساسي. يمكن للزبون اختيار ما
+                    يناسبه، وسيتم تحديد تكلفة إضافية لكل ميزة. الوضع الليلي (Dark Mode) مُدرج ضمن التصميم الأساسي وليس
+                    ميزة اختيارية.</span>
+            </div>
+
+            <!-- TIER 1 -->
+            <div class="tier-header red"> الفئة الأولى: مُوصى بها بشدة (7 ميزات)</div>
+
+            <div class="feature-card">
+                <div class="feature-num red">1</div>
+                <div class="feature-content">
+                    <h4>نظام الامتحانات والتقييم</h4>
+                    <p>MCQs + حالات سريرية + عرض النتيجة الفورية وتوضيح الإجابات</p>
+                </div>
+                <div class="feature-badge high">تعقيد متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num red">2</div>
+                <div class="feature-content">
+                    <h4>المشاهدة بدون إنترنت مع حماية (DRM)</h4>
+                    <p>تحميل مشفر داخل التطبيق فقط — لا يمكن نقل أو مشاركة الملفات</p>
+                </div>
+                <div class="feature-badge high">تعقيد عالي</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num red">3</div>
+                <div class="feature-content">
+                    <h4>التكيف التلقائي لجودة الفيديو</h4>
+                    <p>تعديل الجودة تلقائياً (144p–1080p) حسب سرعة الاتصال</p>
+                </div>
+                <div class="feature-badge high">تعقيد متوسط–عالي</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num red">4</div>
+                <div class="feature-content">
+                    <h4>قارئ ملفات آمن</h4>
+                    <p>قارئ PDF مدمج يمنع النسخ وتصوير الشاشة</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num red">5</div>
+                <div class="feature-content">
+                    <h4>الفهرسة والطوابع الزمنية</h4>
+                    <p>طوابع زمنية للقفز المباشر في الفيديوهات الطويلة</p>
+                </div>
+                <div class="feature-badge low">تعقيد منخفض–متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num red">6</div>
+                <div class="feature-content">
+                    <h4>تقييد الأجهزة</h4>
+                    <p>ربط الحساب بالمعرف الفريد للهاتف (Device ID) لمنع المشاركة</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num red">7</div>
+                <div class="feature-content">
+                    <h4>الإشعارات ونظام المتابعة</h4>
+                    <p>متابعة محاضرين وتخصصات + تنبيهات لمحتوى جديد وبث مباشر</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+
+            <!-- TIER 2 -->
+            <div class="tier-header yellow" style="margin-top: 30px;"> الفئة الثانية: تطويرية مهمة (6 ميزات)</div>
+
+            <div class="feature-card">
+                <div class="feature-num yellow">8</div>
+                <div class="feature-content">
+                    <h4>نظام التعليقات والنقاش</h4>
+                    <p>تعليقات آمنة — ممنوع الروابط والصور والمرفقات — فقط @mention داخلي</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num yellow">9</div>
+                <div class="feature-content">
+                    <h4>التقييم والمراجعات</h4>
+                    <p>تقييم الكورس والمحاضر بعد اجتياز نسبة من المحاضرات</p>
+                </div>
+                <div class="feature-badge low">تعقيد منخفض–متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num yellow">10</div>
+                <div class="feature-content">
+                    <h4>المعالجة السحابية للفيديو</h4>
+                    <p>إنتاج جودات متعددة تلقائياً (1080p, 720p, 480p) عند الرفع</p>
+                </div>
+                <div class="feature-badge high">تعقيد متوسط–عالي</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num yellow">11</div>
+                <div class="feature-content">
+                    <h4>العلامة المائية</h4>
+                    <p>شعار المنصة + اسم الدكتور على الفيديوهات لحماية الملكية</p>
+                </div>
+                <div class="feature-badge low">تعقيد منخفض–متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num yellow">12</div>
+                <div class="feature-content">
+                    <h4>لوحة تفاعل الدكتور</h4>
+                    <p>صندوق إشعارات مجمع لأسئلة الطلاب يسهل الرد عليها</p>
+                </div>
+                <div class="feature-badge low">تعقيد منخفض–متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num yellow">13</div>
+                <div class="feature-content">
+                    <h4>البث الاحترافي عبر OBS</h4>
+                    <p>إصدار مفتاح بث (Stream Key) لاستخدام برامج بث احترافية</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+
+            <!-- TIER 3 -->
+            <div class="tier-header green" style="margin-top: 30px;"> الفئة الثالثة: متقدمة ومستقبلية (4 ميزات)</div>
+
+            <div class="feature-card">
+                <div class="feature-num green">14</div>
+                <div class="feature-content">
+                    <h4>المساعد التعليمي الذكي (AI Tutor)</h4>
+                    <p>روبوت محادثة بالذكاء الاصطناعي مدرب على محتوى المنصة فقط</p>
+                </div>
+                <div class="feature-badge high">تعقيد عالي جداً</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num green">15</div>
+                <div class="feature-content">
+                    <h4>نظام المكافآت والنقاط</h4>
+                    <p>تجميع نقاط واستبدالها بتخفيضات ومزايا حصرية</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num green">16</div>
+                <div class="feature-content">
+                    <h4>نظام التسويق بالعمولة</h4>
+                    <p>أكواد خصم لمندوبين مع احتساب عمولة تلقائية</p>
+                </div>
+                <div class="feature-badge medium">تعقيد متوسط</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-num green">17</div>
+                <div class="feature-content">
+                    <h4>شهادات إتمام إلكترونية</h4>
+                    <p>شهادة PDF أنيقة مع كود QR للتحقق من صحتها</p>
+                </div>
+                <div class="feature-badge low">تعقيد منخفض–متوسط</div>
+            </div>
+
+            <!-- Summary Stats -->
+            <div class="stats-bar" style="margin-top: 30px;">
+                <div class="stat-item">
+                    <div class="stat-value">16</div>
+                    <div class="stat-label">ميزة أساسية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">7</div>
+                    <div class="stat-label">ميزة موصى بها</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">6</div>
+                    <div class="stat-label">ميزة تطويرية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">4</div>
+                    <div class="stat-label">ميزة مستقبلية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 6. PAYMENTS ══════════════════════════ -->
+    <section class="section" id="s6">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-credit-card"></i></div>
+                <div>
+                    <div class="section-num">القسم السادس</div>
+                    <div class="section-title">أنظمة الدفع والاشتراكات</div>
+                </div>
+            </div>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>نوع الدفع</th>
+                        <th>التفاصيل</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>البوابات الدولية</strong></td>
+                        <td>PayPal + بطاقات Visa / Mastercard</td>
+                    </tr>
+                    <tr>
+                        <td><strong>المدفوعات المحلية (MOAMALAT)</strong></td>
+                        <td>خدمة معاملات الليبية — بوابة موحدة توفر جميع وسائل الدفع المحلية (سداد، تداول، موبي كاش،
+                            وغيرها)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>أكواد التفعيل</strong></td>
+                        <td>أكواد شحن مشفرة تُباع ككروت مدفوعة مسبقاً في المكتبات الطبية والجامعية</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3 style="font-size: 17px; font-weight: 700; color: var(--brand-primary); margin: 24px 0 14px;"><i
+                    class="ph ph-money"></i> نماذج التسعير المتاحة</h3>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-icon"><i class="ph ph-book"></i></div>
+                    <div>
+                        <h5>تسعير حسب الكورس الواحد</h5>
+                        <p>شراء كورس محدد بسعره الخاص</p>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-icon"><i class="ph ph-stethoscope"></i></div>
+                    <div>
+                        <h5>اشتراك عند محاضر/دكتور</h5>
+                        <p>الوصول لجميع كورسات محاضر معين</p>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-icon"><i class="ph ph-package"></i></div>
+                    <div>
+                        <h5>باقات اشتراك خاصة</h5>
+                        <p>حزم تتيح مجموعة كورسات بسعر مخفض</p>
+                    </div>
+                </div>
+                <div class="pricing-card">
+                    <div class="pricing-icon"><i class="ph ph-infinity"></i></div>
+                    <div>
+                        <h5>وصول دائم (Lifetime)</h5>
+                        <p>شراء كورس مرة واحدة بدون تاريخ انتهاء</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 7. OPERATIONAL COSTS ══════════════════════════ -->
+    <section class="section" id="s7">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-broadcast"></i></div>
+                <div>
+                    <div class="section-num">القسم السابع</div>
+                    <div class="section-title">التكاليف التشغيلية الشهرية</div>
+                </div>
+            </div>
+
+            <div class="note-box">
+                <span class="note-icon"><i class="ph ph-info"></i></span>
+                <span>هذه التكاليف تقديرية وتُدفع مباشرة من قبل العميل لمزودي الخدمة لضمان استمرارية عمل المنصة.</span>
+            </div>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>الخدمة</th>
+                        <th>المزود</th>
+                        <th>التكلفة التقديرية</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>الاستضافة وقواعد البيانات</td>
+                        <td>العنكبوت الليبي (Cloud VPS)</td>
+                        <td><strong>$50 – $100 / شهر</strong></td>
+                    </tr>
+                    <tr>
+                        <td>البث المباشر</td>
+                        <td>Agora / Amazon IVS</td>
+                        <td><strong>$50 – $150 / شهر</strong> (حسب الاستخدام)</td>
+                    </tr>
+                    <tr>
+                        <td>تخزين الفيديو + DRM</td>
+                        <td>Vimeo OTT / AWS S3</td>
+                        <td><strong>$50 – $100 / شهر</strong></td>
+                    </tr>
+                    <tr>
+                        <td>حساب Apple Developer</td>
+                        <td>Apple</td>
+                        <td><strong>$99 / سنة</strong></td>
+                    </tr>
+                    <tr>
+                        <td>حساب Google Play</td>
+                        <td>Google</td>
+                        <td><strong>$25 / مرة واحدة</strong></td>
+                    </tr>
+                    <tr class="highlight-row">
+                        <td colspan="2"><strong>الإجمالي التقديري الشهري</strong></td>
+                        <td><strong>$150 – $350 / شهر</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 8. FINANCIAL OFFER ══════════════════════════ -->
+    <section class="section page-break" id="s8">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-money"></i></div>
+                <div>
+                    <div class="section-num">القسم الثامن</div>
+                    <div class="section-title">العرض المالي وخطة الدفع</div>
+                </div>
+            </div>
+
+            <div class="info-card teal" style="text-align: center; padding: 30px;">
+                <div style="font-size: 14px; color: var(--text-light); margin-bottom: 8px;">إجمالي تكلفة البرمجة
+                    والتصميم</div>
+                <div
+                    style="font-size: 36px; font-weight: 900; background: linear-gradient(135deg, var(--brand-primary), var(--accent-teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+                    $8,000</div>
+                <div style="font-size: 13px; color: var(--text-light); margin-top: 6px;">دولار أمريكي</div>
+            </div>
+
+            <!-- Milestone Progress Bar -->
+            <h4 style="margin: 24px 0 12px; font-weight: 700; color: var(--brand-dark);">توزيع الدفعات على المراحل</h4>
+            <div class="milestone-progress">
+                <div class="milestone-bar" style="width: 20%;" title="20%"></div>
+                <div class="milestone-bar" style="width: 15%;"></div>
+                <div class="milestone-bar" style="width: 25%;"></div>
+                <div class="milestone-bar" style="width: 30%;"></div>
+                <div class="milestone-bar" style="width: 10%;"></div>
+            </div>
+
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>المرحلة</th>
+                        <th>النسبة</th>
+                        <th>تفاصيل التسليم</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>التأسيس والتحليل</strong></td>
+                        <td style="color: #3b82f6; font-weight: 700;">20%</td>
+                        <td>تحليل المتطلبات، هيكلة قاعدة البيانات، اعتماد التقنيات</td>
+                    </tr>
+                    <tr>
+                        <td><strong>تصميم الواجهات (UI/UX)</strong></td>
+                        <td style="color: #8b5cf6; font-weight: 700;">15%</td>
+                        <td>الهوية البصرية، جميع شاشات التطبيق ولوحات التحكم</td>
+                    </tr>
+                    <tr>
+                        <td><strong>تطوير الخوادم (Backend)</strong></td>
+                        <td style="color: #f59e0b; font-weight: 700;">25%</td>
+                        <td>قواعد البيانات، لوحات التحكم، الواجهات البرمجية (APIs)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>تطوير التطبيق (Frontend)</strong></td>
+                        <td style="color: #10b981; font-weight: 700;">30%</td>
+                        <td>تطبيق الهاتف بالكامل، مشغل الفيديو، البث المباشر</td>
+                    </tr>
+                    <tr>
+                        <td><strong>الاختبار والتسليم</strong></td>
+                        <td style="color: #ef4444; font-weight: 700;">10%</td>
+                        <td>الاختبار النهائي، رفع على المتاجر، تسليم المشروع</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- Example Calculation -->
+            <div class="info-card" style="margin-top: 20px;">
+                <div class="info-card-title"><i class="ph ph-chart-bar"></i> مثال حسابي (على أساس $8,000)</div>
+                <div class="info-card-body">
+                    التأسيس: <strong>$1,600</strong> → التصميم: <strong>$1,200</strong> → الخوادم:
+                    <strong>$2,000</strong> → التطبيق: <strong>$2,400</strong> → الاختبار: <strong>$800</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 9. TIMELINE ══════════════════════════ -->
+    <section class="section" id="s9">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-calendar-blank"></i></div>
+                <div>
+                    <div class="section-num">القسم التاسع</div>
+                    <div class="section-title">الجدول الزمني المتوقع</div>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot">1</div>
+                    <div class="timeline-content">
+                        <h4>التأسيس والتحليل</h4>
+                        <div class="duration"><i class="ph ph-calendar-blank"></i> 2–3 أسابيع | الأسبوع 1–3</div>
+                        <p>تحليل المتطلبات، بناء هيكلة قاعدة البيانات، اعتماد التقنيات ومسارات العمل</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">2</div>
+                    <div class="timeline-content">
+                        <h4>تصميم الواجهات (UI/UX)</h4>
+                        <div class="duration"><i class="ph ph-calendar-blank"></i> 3–4 أسابيع | الأسبوع 4–7</div>
+                        <p>تصميم الهوية البصرية وجميع شاشات التطبيق ولوحات التحكم</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">3</div>
+                    <div class="timeline-content">
+                        <h4>تطوير الخوادم (Backend)</h4>
+                        <div class="duration"><i class="ph ph-calendar-blank"></i> 6–8 أسابيع | الأسبوع 6–14</div>
+                        <p>برمجة قواعد البيانات، لوحات التحكم، والواجهات البرمجية</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">4</div>
+                    <div class="timeline-content">
+                        <h4>تطوير التطبيق (Frontend)</h4>
+                        <div class="duration"><i class="ph ph-calendar-blank"></i> 6–8 أسابيع | الأسبوع 10–18</div>
+                        <p>برمجة تطبيق الهاتف بالكامل، ربطه بالخوادم، دمج مشغل الفيديو والبث</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot">5</div>
+                    <div class="timeline-content">
+                        <h4>الاختبار والتحسين والتسليم</h4>
+                        <div class="duration"><i class="ph ph-calendar-blank"></i> 3–4 أسابيع | الأسبوع 19–22</div>
+                        <p>الاختبار النهائي، رفع على المتاجر، تسليم المشروع</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"><i class="ph ph-lightning"></i></div>
+                    <div class="timeline-content">
+                        <h4>فترة احتياطية للتعديلات</h4>
+                        <div class="duration"><i class="ph ph-calendar-blank"></i> 2–4 أسابيع | الأسبوع 22–26</div>
+                        <p>تعديلات نهائية ومراجعات وتحسينات بناءً على الملاحظات</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card teal" style="text-align: center;">
+                <div style="font-size: 14px; color: var(--text-light);">الإجمالي المتوقع</div>
+                <div style="font-size: 28px; font-weight: 900; color: var(--brand-dark);">5 – 6 أشهر</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 10. MAINTENANCE ══════════════════════════ -->
+    <section class="section" id="s10">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-wrench"></i></div>
+                <div>
+                    <div class="section-num">القسم العاشر</div>
+                    <div class="section-title">اتفاقية الصيانة والدعم الفني</div>
+                </div>
+            </div>
+
+            <div class="info-card highlight">
+                <div class="info-card-title"><i class="ph ph-shield-check"></i> فترة الضمان المجانية — 3 أشهر</div>
+                <div class="info-card-body">إصلاح الأخطاء البرمجية (Bugs) التي تظهر أثناء الاستخدام الفعلي. لا يشمل
+                    إضافة ميزات جديدة أو تعديلات جوهرية.</div>
+            </div>
+
+            <div class="info-card teal" style="margin-top: 16px;">
+                <div class="info-card-title"><i class="ph ph-clipboard-text"></i> عقد الصيانة السنوي</div>
+                <div class="info-card-body">
+                    <strong>التكلفة:</strong> 15% – 20% من إجمالي قيمة المشروع سنوياً (~$300/شهر)<br><br>
+                    <strong>السنة الأولى:</strong> <span style="color: var(--danger); font-weight: 700;">إجباري</span> —
+                    يبدأ فوراً بعد انتهاء الضمان<br>
+                    <strong>السنوات التالية:</strong> <span
+                        style="color: var(--success); font-weight: 700;">اختياري</span> — يمكن للعميل التجديد إذا أراد
+                </div>
+            </div>
+
+            <h4 style="margin: 24px 0 14px; font-weight: 700; color: var(--brand-dark);"><i
+                    class="ph ph-check-circle"></i> يشمل عقد الصيانة:</h4>
+            <div class="content-block">
+                <ul>
+                    <li>المراقبة المستمرة للخوادم وقواعد البيانات والنسخ الاحتياطي</li>
+                    <li>تحديث الحزم والمكتبات البرمجية لتتوافق مع إصدارات الأنظمة</li>
+                    <li>التأكد من استقرار البث المباشر وتحديث شهادات الأمان (SSL)</li>
+                    <li>الدعم الفني عبر قنوات التواصل المتفق عليها</li>
+                    <li><strong>إصلاح أي مشاكل برمجية أو أخطاء فنية في أسرع وقت ممكن</strong> (أولوية قصوى)</li>
+                    <li><strong>التعامل مع وكلاء خدمات الطرف الثالث</strong> نيابةً عن العميل (الاستضافة، MOAMALAT،
+                        خدمات البث)</li>
+                </ul>
+            </div>
+
+            <div class="note-box warn">
+                <span class="note-icon"><i class="ph ph-warning"></i></span>
+                <span>في حال عدم تجديد عقد الصيانة بعد السنة الأولى، يتحمل العميل مسؤولية إدارة الخوادم والتعامل مع
+                    مزودي الخدمات بشكل مستقل.</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 11. TERMS ══════════════════════════ -->
+    <section class="section" id="s11">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-clipboard-text"></i></div>
+                <div>
+                    <div class="section-num">القسم الحادي عشر</div>
+                    <div class="section-title">الشروط والأحكام العامة</div>
+                </div>
+            </div>
+
+            <div class="info-card highlight">
+                <div class="info-card-title">🔑 حقوق الملكية الفكرية والكود المصدري</div>
+                <div class="info-card-body">
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="padding: 6px 0;">✦ <strong>ملكية المنتج</strong> تعود بالكامل إلى العميل بجميع
+                            مكوناته.</li>
+                        <li style="padding: 6px 0;">✦ <strong>تسليم الكود المصدري:</strong> عند انتهاء السنة الأولى
+                            (تطوير + ضمان)، يحق للعميل الحصول على نسخة كاملة من الكود المصدري لجميع المكونات.</li>
+                        <li style="padding: 6px 0;">✦ يحق للعميل إدارة المشروع بشكل مستقل أو تكليف أي طرف آخر بتطويره.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="component-grid" style="margin-top: 16px;">
+                <div class="info-card">
+                    <div class="info-card-title"><i class="ph ph-lock-key"></i> السرية وحماية البيانات</div>
+                    <div class="info-card-body">يلتزم الطرفان بسرية جميع المعلومات المتبادلة خلال فترة التعاقد وبعدها.
+                        لا يحق لأي طرف مشاركة بيانات المشروع مع أطراف ثالثة دون إذن خطي مسبق.</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title"><i class="ph ph-note-pencil"></i> التعديلات والإضافات</div>
+                    <div class="info-card-body">أي تعديلات خارج النطاق المتفق عليه تخضع لتسعير منفصل يتم الاتفاق عليه
+                        كتابياً. التعديلات الجوهرية قد تؤثر على الجدول الزمني.</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title"><i class="ph ph-prohibit"></i> إلغاء العقد</div>
+                    <div class="info-card-body">إخطار كتابي قبل 30 يوماً. يلتزم العميل بدفع قيمة المراحل المُنجزة
+                        والمُسلَّمة فعلياً حتى تاريخ الإلغاء.</div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title"><i class="ph ph-scales"></i> فض النزاعات</div>
+                    <div class="info-card-body">يسعى الطرفان لحل أي خلاف بالتراضي أولاً. في حال تعذر الحل الودي، يتم
+                        اللجوء إلى الجهات القضائية المختصة.</div>
+                </div>
+            </div>
+
+            <h4 style="margin: 24px 0 14px; font-weight: 700; color: var(--brand-dark);">التزامات الطرفين</h4>
+            <div class="component-grid">
+                <div class="info-card">
+                    <div class="info-card-title"><i class="ph ph-push-pin"></i> التزامات العميل</div>
+                    <div class="info-card-body">
+                        • توفير المحتوى والمواد في الأوقات المحددة<br>
+                        • الرد على الاستفسارات خلال 5 أيام عمل<br>
+                        • سداد الدفعات في مواعيدها<br>
+                        • توفير حسابات الخدمات السحابية
+                    </div>
+                </div>
+                <div class="info-card">
+                    <div class="info-card-title"><i class="ph ph-push-pin"></i> التزامات Vision Media</div>
+                    <div class="info-card-body">
+                        • الالتزام بالجدول الزمني المتفق عليه<br>
+                        • تقديم تقارير دورية عن سير العمل<br>
+                        • تسليم كود مصدري نظيف ومُوثَّق<br>
+                        • توفير التدريب الأساسي على لوحات التحكم
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ 12. SIGNATURES ══════════════════════════ -->
+    <section class="section signature-section" id="s12">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-icon"><i class="ph ph-pen-nib"></i></div>
+                <div>
+                    <div class="section-num">القسم الثاني عشر</div>
+                    <div class="section-title">التوقيعات والاعتماد</div>
+                </div>
+            </div>
+
+            <div class="signature-grid">
+                <div class="signature-box">
+                    <h4>الطرف الأول (المطور)</h4>
+                    <p style="font-size: 14px; color: var(--brand-primary); font-weight: 700;">مؤسسة VISION MEDIA</p>
+                    <div class="signature-label">الممثل</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">التوقيع</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">التاريخ</div>
+                    <div class="signature-line"></div>
+                </div>
+                <div class="signature-box">
+                    <h4>الطرف الثاني (العميل)</h4>
+                    <p style="font-size: 14px; color: var(--text-medium); font-weight: 600;">
+                        _________________________________</p>
+                    <p style="font-size: 12px; color: var(--text-light);">الجهة المستفيدة</p>
+                    <div class="signature-label">الممثل</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">التوقيع</div>
+                    <div class="signature-line"></div>
+                    <div class="signature-label">التاريخ</div>
+                    <div class="signature-line"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════ FOOTER ══════════════════════════ -->
+    <div class="contract-footer">
+        <img src="assets/vision_media_logo.png" alt="Vision Media">
+        <p><strong>مؤسسة VISION MEDIA</strong></p>
+        <p>📧 visionmedia@gmail.com | <i class="ph ph-device-mobile"></i> +218-94-1171181</p>
+        <div class="footer-badge"><i class="ph ph-lock-key"></i> هذا المستند سري ومُعد حصرياً للأطراف المعنية</div>
+    </div>
+
+    <!-- Print/PDF Button -->
+    <button class="no-print" onclick="window.print()" style="
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 999;
+    background: linear-gradient(135deg, #1e3a8a, #0d9488);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-family: 'Cairo', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(13, 148, 136, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+">
+        <i class="ph ph-file-text"></i> حفظ كـ PDF
+    </button>
+
+</body>
+
+</html>
