@@ -1636,10 +1636,10 @@
                 
                 <!-- Large Image Section (First on RTL desktop, bottom on mobile) -->
                 <div class="w-full md:w-[60%] relative z-10 order-2 md:order-none flex items-end">
-                    <!-- -mx-6 allows it to stretch wider on mobile beyond the padding -->
-                    <div class="-mx-8 sm:mx-0 w-full flex items-end justify-center">
+                    <!-- Stretch full width on mobile ignoring the container 30px padding -->
+                    <div class="w-[calc(100%+60px)] -mx-[30px] sm:w-full sm:mx-0 flex items-end justify-center">
                         <img src="assets/tablet%20and%20phone_mockup.png" alt="تجربة المستخدم على مختلف الأجهزة"
-                            class="w-full h-auto object-contain drop-shadow-[0_25px_50px_rgba(0,0,0,0.5)] scale-[1.15] sm:scale-100 md:scale-110 origin-bottom transition-transform hover:scale-[1.12] duration-500 translate-y-1">
+                            class="w-full h-auto object-contain sm:scale-100 md:scale-110 origin-bottom transition-transform hover:scale-[1.12] duration-500 translate-y-1">
                     </div>
                 </div>
 
